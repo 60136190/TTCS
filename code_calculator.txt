@@ -1,0 +1,99 @@
+
+Option Explicit
+Dim a As Double, b As Double, kq As Double
+Dim pheptinh As Integer
+
+
+Private Sub CommandButton16_Click()
+
+End Sub
+
+Private Sub btn0_Click()
+txthienthi.Text = txthienthi.Text & 0
+End Sub
+
+Private Sub btn1_Click()
+txthienthi.Text = txthienthi.Text & 1
+End Sub
+
+Private Sub btn2_Click()
+txthienthi.Text = txthienthi.Text & 2
+End Sub
+
+Private Sub btn3_Click()
+txthienthi.Text = txthienthi.Text & 3
+End Sub
+
+Private Sub btn4_Click()
+txthienthi.Text = txthienthi.Text & 4
+End Sub
+
+Private Sub btn5_Click()
+txthienthi.Text = txthienthi.Text & 5
+End Sub
+
+Private Sub btn6_Click()
+txthienthi.Text = txthienthi.Text & 6
+End Sub
+
+Private Sub btn7_Click()
+txthienthi.Text = txthienthi.Text & 7
+End Sub
+
+Private Sub btn8_Click()
+txthienthi.Text = txthienthi.Text & 8
+End Sub
+
+Private Sub btn9_Click()
+txthienthi.Text = txthienthi.Text & 9
+End Sub
+
+
+Private Sub btnbang_Click()
+b = txthienthi.Text
+Select Case pheptinh
+    Case 1
+           kq = a + b
+    Case 2
+           kq = a - b
+    Case 3
+           kq = a * b
+    Case 4
+           kq = a / b
+End Select
+
+txthienthi.Text = kq
+
+
+End Sub
+
+Private Sub btnc_Click()
+txthienthi.Text = ""
+End Sub
+
+Private Sub btnchia_Click()
+a = txthienthi.Text
+ pheptinh = 4
+txthienthi.Text = ""
+End Sub
+
+Private Sub btncong_Click()
+ a = txthienthi.Text
+ pheptinh = 1
+txthienthi.Text = ""
+
+End Sub
+
+
+Private Sub btnnhan_Click()
+a = txthienthi.Text
+ pheptinh = 3
+txthienthi.Text = ""
+End Sub
+
+Private Sub btntru_Click()
+a = txthienthi.Text
+ pheptinh = 2
+txthienthi.Text = ""
+End Sub
+
