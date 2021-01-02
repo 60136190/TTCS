@@ -1,56 +1,54 @@
 
 Option Explicit
-Dim a As Double, b As Double, kq As Double
-Dim pheptinh As Integer
+Dim a As Double
+Dim b As Double
+Dim kq As Double
+Dim s As String
 
+Dim pheptinh As Double
 
-Private Sub CommandButton16_Click()
-
-End Sub
 
 Private Sub btn0_Click()
-txthienthi.Text = txthienthi.Text & 0
+txthienthi.text = txthienthi.text & 0
 End Sub
 
 Private Sub btn1_Click()
-txthienthi.Text = txthienthi.Text & 1
+txthienthi.text = txthienthi.text & 1
 End Sub
 
 Private Sub btn2_Click()
-txthienthi.Text = txthienthi.Text & 2
+txthienthi.text = txthienthi.text & 2
 End Sub
-
 Private Sub btn3_Click()
-txthienthi.Text = txthienthi.Text & 3
+txthienthi.text = txthienthi.text & 3
 End Sub
-
 Private Sub btn4_Click()
-txthienthi.Text = txthienthi.Text & 4
+txthienthi.text = txthienthi.text & 4
 End Sub
 
 Private Sub btn5_Click()
-txthienthi.Text = txthienthi.Text & 5
+txthienthi.text = txthienthi.text & 5
 End Sub
 
 Private Sub btn6_Click()
-txthienthi.Text = txthienthi.Text & 6
+txthienthi.text = txthienthi.text & 6
 End Sub
 
 Private Sub btn7_Click()
-txthienthi.Text = txthienthi.Text & 7
+txthienthi.text = txthienthi.text & 7
 End Sub
 
 Private Sub btn8_Click()
-txthienthi.Text = txthienthi.Text & 8
+txthienthi.text = txthienthi.text & 8
 End Sub
 
 Private Sub btn9_Click()
-txthienthi.Text = txthienthi.Text & 9
+txthienthi.text = txthienthi.text & 9
 End Sub
 
 
 Private Sub btnbang_Click()
-b = txthienthi.Text
+b = txthienthi.text
 Select Case pheptinh
     Case 1
            kq = a + b
@@ -60,40 +58,175 @@ Select Case pheptinh
            kq = a * b
     Case 4
            kq = a / b
+    Case 5
+           kq = a Mod b
+    Case 6
+           kq = Fix(a / b)
+           
+           
 End Select
 
-txthienthi.Text = kq
+txthienthi.text = kq
+cb1.text = kq
 
 
 End Sub
 
+Function CBin(ByVal n As Double) As String
+    If n = 0 Then
+        CBin = 0
+    ElseIf n > 0 Then
+        Dim i As Double
+        Dim c As Long
+        i = 2 ^ CLng(Log(n) / Log(2) + 0.1)
+        Do While i >= 1
+            c = Fix(n / i)
+            CBin = CBin & c
+            n = n - i * c
+            i = i / 2
+        Loop
+    End If
+End Function
+
+
+
+Private Sub btnbin_Click()
+a = txthienthi.text
+kq = CBin(a)
+txthienthi.text = kq
+cb1.text = kq
+
+End Sub
+Function CDeci(ByRef s As String) As Double
+    Dim i As Long
+    CDeci = 0
+    For i = 0 To Len(s) - 1
+        CDeci = CDeci + (Mid$(s, Len(s) - i, 1) * 2 ^ i)
+    Next i
+End Function
+
+Private Sub btndec_Click()
+s = txthienthi.text
+kq = CDeci(s)
+txthienthi.text = kq
+cb1.text = kq
+End Sub
+
+
 Private Sub btnc_Click()
-txthienthi.Text = ""
+txthienthi.text = ""
+End Sub
+
+Private Sub btnc1_Click()
+txthienthi1.text = ""
+End Sub
+
+Private Sub btncanbac2_Click()
+a = txthienthi.text
+kq = a ^ (1 / 2)
+txthienthi.text = kq
+
+End Sub
+
+Private Sub btncham_Click()
+
 End Sub
 
 Private Sub btnchia_Click()
-a = txthienthi.Text
+a = txthienthi.text
  pheptinh = 4
-txthienthi.Text = ""
+txthienthi.text = ""
+End Sub
+
+Private Sub btnchialaynguyen_Click()
+a = txthienthi.text
+pheptinh = 6
+txthienthi.text = ""
+
 End Sub
 
 Private Sub btncong_Click()
- a = txthienthi.Text
+ a = txthienthi.text
  pheptinh = 1
-txthienthi.Text = ""
+txthienthi.text = ""
 
 End Sub
+
+
+
+Private Sub btndu_Click()
+a = txthienthi.text
+pheptinh = 5
+txthienthi.text = ""
+
+End Sub
+
+Private Sub btnln_Click()
+a = txthienthi.text
+kq = Log(a)
+txthienthi.text = kq
+
+End Sub
+
 
 
 Private Sub btnnhan_Click()
-a = txthienthi.Text
+a = txthienthi.text
  pheptinh = 3
-txthienthi.Text = ""
+txthienthi.text = ""
 End Sub
 
 Private Sub btntru_Click()
-a = txthienthi.Text
+a = txthienthi.text
  pheptinh = 2
-txthienthi.Text = ""
+txthienthi.text = ""
 End Sub
 
+
+Private Sub btnx3_Click()
+a = txthienthi.text
+kq = a * a * a
+txthienthi.text = kq
+End Sub
+
+Private Sub btnxoa_Click()
+If txthienthi <> 0 And txthienthi <> "" Then txthienthi = Left(txthienthi, Len(txthienthi) - 1)
+End Sub
+
+Private Sub btnluythua_Click()
+a = txthienthi.text
+kq = a * a
+txthienthi.text = kq
+End Sub
+
+
+Private Sub cb1_Change()
+Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
+myFile = "D:\database.txt"
+Open myFile For Input As #1
+Do Until EOF(1)
+    Line Input #1, textline
+    text = text & textline
+Loop
+Close #1
+cb1.text = textline
+End Sub
+
+Private Sub cb2_DropButtonClick()
+With cb2
+       .AddItem "log"
+       .AddItem "pt bac 2"
+       .AddItem "pt bac 3"
+    End With
+   
+End Sub
+
+
+Private Sub txthienthi_Change()
+Dim strFile_Path As String
+strFile_Path = "D:\database.txt"
+Open strFile_Path For Output As #1
+Write #1, txthienthi.text
+Close #1
+
+End Sub
