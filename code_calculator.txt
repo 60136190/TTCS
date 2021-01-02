@@ -199,7 +199,7 @@ kq = a * a
 txthienthi.text = kq
 End Sub
 
-
+-------------------------- Code đọc từ file text đã lưu trên màn hình kết quả---------------------ơ
 Private Sub cb1_Change()
 Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
 myFile = "D:\database.txt"
@@ -221,7 +221,7 @@ With cb2
    
 End Sub
 
-
+------------------------------- Code lưu kết quả tính về file text---------------------
 Private Sub txthienthi_Change()
 Dim strFile_Path As String
 strFile_Path = "D:\database.txt"
