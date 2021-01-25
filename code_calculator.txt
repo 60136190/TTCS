@@ -2,6 +2,9 @@
 Option Explicit
 Dim a As Double
 Dim b As Double
+Dim c As Double
+Dim d As Double
+
 Dim kq As Double
 Dim s As String
 
@@ -9,6 +12,7 @@ Dim pheptinh As Double
 
 
 Private Sub btn0_Click()
+
 txthienthi.text = txthienthi.text & 0
 End Sub
 
@@ -47,30 +51,106 @@ txthienthi.text = txthienthi.text & 9
 End Sub
 
 
-Private Sub btnbang_Click()
-b = txthienthi.text
-Select Case pheptinh
-    Case 1
-           kq = a + b
-    Case 2
-           kq = a - b
-    Case 3
-           kq = a * b
-    Case 4
-           kq = a / b
-    Case 5
-           kq = a Mod b
-    Case 6
-           kq = Fix(a / b)
-           
-           
-End Select
+Private Sub btna_Click()
+MsgBox " Nhap he so a"
 
-txthienthi.text = kq
-cb1.text = kq
+End Sub
+
+Private Sub btnam_Click()
+txthienthi = txthienthi & "-"
 
 
 End Sub
+
+Private Sub btnb_Click()
+a = txthienthi.text
+txthienthi.text = ""
+MsgBox "Nhap he so b"
+pheptinh = 11
+End Sub
+Private Sub btncc_Click()
+b = txthienthi.text
+txthienthi.text = ""
+MsgBox " Nhap he so c"
+pheptinh = 12
+
+End Sub
+
+Private Sub btnbang_Click()
+Select Case pheptinh
+    Case 1
+    
+           b = txthienthi.text
+           kq = a + b
+    Case 2
+           b = txthienthi.text
+           kq = a - b
+    Case 3
+           b = txthienthi.text
+           kq = a * b
+    Case 4
+           b = txthienthi.text
+           kq = a / b
+    Case 5
+           b = txthienthi.text
+           kq = a Mod b
+    Case 6
+           b = txthienthi.text
+           kq = Fix(a / b)
+    Case 7
+           kq = a * a
+    Case 8
+           kq = a * a * a
+    Case 9
+           kq = a ^ (1 / 2)
+    Case 10
+           kq = Log(a)
+    Case 11
+           b = txthienthi.text
+           kq = pt1(a, b)
+    Case 12
+           c = txthienthi.text
+           kq = pt2(a, b, c)
+           
+End Select
+txthienthi.text = kq
+Dim strFile_Path As String
+strFile_Path = "D:\database.txt"
+Open strFile_Path For Append As #1
+Write #1, txthienthi
+Close #1
+cb1 = kq
+End Sub
+
+
+Function pt1(a, b)
+     If (a = "" Or b = "") Then
+            MsgBox "ban phai nhap du 2 so lieu"
+        ElseIf (a = 0 And b <> 0) Then
+            MsgBox "Phuong trinh vo nghiem"
+          
+        ElseIf (a = 0 And b = 0) Then
+            MsgBox "Phuong trinh vo so nghiem"
+        Else
+            pt1 = (Val(-b) / Val(a))
+        End If
+         
+End Function
+Function pt2(a, b, c)
+
+Dim delta As Integer
+
+delta = b * b - 4 * a * c
+If delta < 0 Then
+ MsgBox "Vo nghiem"
+Else
+    If delta = 0 Then
+    MsgBox "Nghiem kep: x1 = x2 = " & -b / (2 * a)
+Else
+MsgBox "2 nghiem phan biet" & vbCrLf & "x1 = " & (-b - Sqr(delta)) / (2 * a) & vbCrLf & "x2 = " & (-b + Sqr(delta)) / (2 * a)
+End If
+End If
+End Function
 
 Function CBin(ByVal n As Double) As String
     If n = 0 Then
@@ -88,14 +168,11 @@ Function CBin(ByVal n As Double) As String
     End If
 End Function
 
-
-
 Private Sub btnbin_Click()
 a = txthienthi.text
 kq = CBin(a)
 txthienthi.text = kq
 cb1.text = kq
-
 End Sub
 Function CDeci(ByRef s As String) As Double
     Dim i As Long
@@ -105,6 +182,8 @@ Function CDeci(ByRef s As String) As Double
     Next i
 End Function
 
+
+
 Private Sub btndec_Click()
 s = txthienthi.text
 kq = CDeci(s)
@@ -113,22 +192,25 @@ cb1.text = kq
 End Sub
 
 
+
+
 Private Sub btnc_Click()
 txthienthi.text = ""
 End Sub
+
+
+
 
 Private Sub btnc1_Click()
 txthienthi1.text = ""
 End Sub
 
+
+
+
 Private Sub btncanbac2_Click()
 a = txthienthi.text
-kq = a ^ (1 / 2)
-txthienthi.text = kq
-
-End Sub
-
-Private Sub btncham_Click()
+pheptinh = 9
 
 End Sub
 
@@ -163,12 +245,9 @@ End Sub
 
 Private Sub btnln_Click()
 a = txthienthi.text
-kq = Log(a)
-txthienthi.text = kq
+pheptinh = 10
 
 End Sub
-
-
 
 Private Sub btnnhan_Click()
 a = txthienthi.text
@@ -178,6 +257,7 @@ End Sub
 
 Private Sub btntru_Click()
 a = txthienthi.text
+
  pheptinh = 2
 txthienthi.text = ""
 End Sub
@@ -185,8 +265,7 @@ End Sub
 
 Private Sub btnx3_Click()
 a = txthienthi.text
-kq = a * a * a
-txthienthi.text = kq
+pheptinh = 8
 End Sub
 
 Private Sub btnxoa_Click()
@@ -195,38 +274,33 @@ End Sub
 
 Private Sub btnluythua_Click()
 a = txthienthi.text
-kq = a * a
-txthienthi.text = kq
+pheptinh = 7
 End Sub
 
--------------------------- Code đọc từ file text đã lưu trên màn hình kết quả---------------------ơ
+
 Private Sub cb1_Change()
-Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
-myFile = "D:\database.txt"
-Open myFile For Input As #1
-Do Until EOF(1)
-    Line Input #1, textline
-    text = text & textline
-Loop
-Close #1
-cb1.text = textline
+
 End Sub
+
+
 
 Private Sub cb2_DropButtonClick()
 With cb2
-       .AddItem "log"
+       .AddItem "pt bac 1"
        .AddItem "pt bac 2"
        .AddItem "pt bac 3"
     End With
-   
+    If cb2 = "pt bac 1" Then MsgBox "Phuong trinh bac 1 co dang: ax + b = 0  "
+     If cb2 = "pt bac 2" Then MsgBox "Phuong trinh bac 2 co dang: ax^2 + bx + c = 0  "
+      If cb2 = "pt bac 3" Then MsgBox "Phuong trinh bac 3 co dang: ax^3 + bx^2 + cx + d = 0  "
+
 End Sub
 
-------------------------------- Code lưu kết quả tính về file text---------------------
+
+Private Sub Label2_Click()
+
+End Sub
+
 Private Sub txthienthi_Change()
-Dim strFile_Path As String
-strFile_Path = "D:\database.txt"
-Open strFile_Path For Output As #1
-Write #1, txthienthi.text
-Close #1
 
 End Sub
